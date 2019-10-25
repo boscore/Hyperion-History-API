@@ -66,6 +66,7 @@ module.exports = {
             exp_backoff_restart_delay: 100,
             watch: ["api"],
             env: {
+                NODEOS_HTTP: "http://127.0.0.1:180",
                 AMQP_HOST: "127.0.0.1:5672",
                 AMQP_API:  "127.0.0.1:15672",
                 AMQP_USER: "ubuntu",
