@@ -78,7 +78,7 @@ Here is the cmdline used:
 wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 sudo apt-get install apt-transport-https
 echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
-sudo apt-get update && sudo apt-get install elasticsearch
+sudo apt-get update && sudo apt-get install elasticsearch -y
 ```
 
 then, edit `/etc/elasticsearch/elasticsearch.yml`
@@ -168,8 +168,6 @@ Reference this link to install [RabbitMQ](https://www.rabbitmq.com/install-debia
 sudo apt-get install curl gnupg -y
 ## Install RabbitMQ signing key
 curl -fsSL https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc | sudo apt-key add -
-## Install apt HTTPS transport
-sudo apt-get install apt-transport-https
 ## Add Bintray repositories that provision latest RabbitMQ and Erlang 21.x releases
 sudo tee /etc/apt/sources.list.d/bintray.rabbitmq.list <<EOF
 ## Installs the latest Erlang 21.x release.
@@ -212,7 +210,7 @@ sudo apt install redis-server -y
 ```
 If you need adjust the IP or PORT, you can edit `/etc/redis/redis.conf`. 
 
-Start Redis:
+Redis service cmdlines:
 
 ```bash
 sudo systemctl restart redis.service
@@ -237,6 +235,8 @@ sudo service nginx -t
 ### Install Hyperion Indexer
 
 ```bash
+sudo chown -R $USER:$(id -gn $USER) ~/.config
+
 git clone https://github.com/boscore/Hyperion-History-API.git
 cd Hyperion-History-API
 npm install

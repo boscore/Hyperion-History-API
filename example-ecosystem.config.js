@@ -78,6 +78,7 @@ module.exports = {
                 SERVER_PORT: "7000",
                 SERVER_NAME: "api.boscore.io",
                 SERVER_ADDR: "127.0.0.1",
+                NODEOS_HTTP: "http://127.0.0.1:180",
                 CHAIN: "bos",
                 ENABLE_CACHING: "false",
                 CACHE_LIFE: 30
