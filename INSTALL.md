@@ -271,6 +271,12 @@ sudo pm2 logs
 
 ```
 
+#### WARNING: when you modify the `env` in `ecosystem.config.js`, you had better call :
+```
+sudo pm2 restart ecosystem.config.js --update-env
+```
+
+
 ## Others
 
 ### Cmdlines to query ElasticSearch
