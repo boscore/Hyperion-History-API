@@ -146,6 +146,38 @@ curl -XDELETE localhost:9200/*abi*
 curl -XDELETE localhost:9200/*bos*   # bos is the chain name
 ```
 
+Change ElasticSearch data and log storing path:
+
+1. Stop ElasticSearch
+```bash
+sudo service elasticsearch stop
+```
+
+2. Update configure file
+```bash
+sudo vim /etc/elasticsearch/elasticsearch.yml
+# change the configures
+path.data: /data/lib/elasticsearch
+path.logs: /data/log/elasticsearch
+
+sudo vim /etc/elasticsearch/jvm.options
+# change the Path into you new path, default is `/var/log/elasticsearch` and `/var/lib/elasticsearch`
+```
+
+3. Create directories and copy files
+```bash
+mkdir -p /data/lib/ /data/log/
+
+sudo mv /var/lib/elasticsearch /data/lib
+sudo mv /var/log/elasticsearch /data/log
+```
+
+4. Start ElasticSearch
+```bash
+sudo service elasticsearch start
+```
+
+
 ### Install Kibana 
 
 ```bash
@@ -202,6 +234,36 @@ Operations to rabbitmq:
 sudo service rabbitmq-server status
 sudo service rabbitmq-server start
 ```
+
+Change Rabbitmq data and log store path:
+
+1. Stop rabbitmq
+```bash
+sudo service rabbitmq-server stop
+````
+
+2. Add conf file:
+```bash
+sudo vim /etc/rabbitmq/rabbitmq-env.conf
+
+# input the file content
+RABBITMQ_MNESIA_BASE=/data/lib/rabbitmq/mnesia
+RABBITMQ_LOG_BASE=/data/lib/rabbitmq/log
+```
+
+3. Create directory and copy old data
+```bash
+mkdir -p /data/lib/rabbitmq
+sudo chown rabbitmq:rabbitmq /data/lib/rabbitmq/
+sudo mv -v /var/lib/rabbitmq/* /data/lib/rabbitmq/
+``` 
+
+4. Start Rabbitmq and check status
+```bash
+sudo service rabbitmq-server start
+sudo service rabbitmq-server status
+```
+
 
 ### Install Redis
 
