@@ -314,6 +314,11 @@ And in the next time, `PREVIEW: 'false'` should be used.
 
 Edit `ecosystem.config.js`, change `PREVIEW: 'true'` and save. And start Hyperion-API for the first time.
 
+`ecosystem.config.js` :
+```
+REWRITE: "true",
+```
+
 ```bash
 cd Hyperion-History-API
 sudo pm2 start --update-env
@@ -324,6 +329,11 @@ sudo pm2 logs
 #### PREVIEW set `false` for next launch
 
 Edit `ecosystem.config.js`, change `PREVIEW: 'false'` and save.
+
+`ecosystem.config.js` :
+```
+REWRITE: "false",
+```
 
 ```bash
 sudo pm2 stop all
